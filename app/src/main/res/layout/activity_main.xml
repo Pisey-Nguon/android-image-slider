@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.digitaltalent.image_slider.ImageSliderView
-        android:id="@+id/imageSlider"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        />
+        <com.digitaltalent.image_slider.ImageSliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+        <com.digitaltalent.page_indicator.PageIndicator
+            android:id="@+id/pageIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:circleColor="#777777"
+            app:selectedCircleColor="#FFFFFF"
+            app:circleRadius="8dp"
+            app:circleSpacing="16dp"
+            />
+    </FrameLayout>
 </RelativeLayout>

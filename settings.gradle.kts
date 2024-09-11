@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "android image slider"
 include(":app")
 include(":image-slider")
+include(":page-indicator")

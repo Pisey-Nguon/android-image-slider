@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PageIndicator">
+        <attr name="circleColor" format="color" />
+        <attr name="selectedCircleColor" format="color" />
+        <attr name="circleRadius" format="dimension" />
+        <attr name="circleSpacing" format="dimension" />
+    </declare-styleable>
+
+</resources>

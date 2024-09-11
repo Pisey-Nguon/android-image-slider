@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.digitaltalent.image_slider.ImageSliderView
 import com.digitaltalent.image_slider.OnSnapPositionChangeListener
+import com.digitaltalent.page_indicator.PageIndicator
 
 const val TAG = "main_activity"
 
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val pageIndicator = findViewById<PageIndicator>(R.id.pageIndicator)
+        pageIndicator.length = 3
         findViewById<ImageSliderView>(R.id.imageSlider).setImages(
             listOf(
                 "https://picsum.photos/id/1/200/300",
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             ), onSnapPositionChangeListener = object :
                 OnSnapPositionChangeListener {
                 override fun onSnapPositionChange(position: Int) {
-
+                    pageIndicator.index = position
                 }
 
             })
