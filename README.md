@@ -113,8 +113,8 @@ You can customize the horizontal margins and the corner radius of each item in t
 ```kotlin
 imageSliderView.setImages(
     images = images,
-    itemMarginHorizontal = 8f, // 8dp horizontal margin
-    itemCircularRadius = 16f, // 16dp corner radius
+    itemMarginHorizontal = 8f, // 8pixel horizontal margin
+    itemCircularRadius = 16f, // 16pixel corner radius
     onSnapPositionChangeListener = object : OnSnapPositionChangeListener {
         override fun onSnapPositionChange(position: Int) {
             // Handle position change
