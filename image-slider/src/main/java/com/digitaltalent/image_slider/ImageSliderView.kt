@@ -53,7 +53,7 @@ class ImageSliderView @JvmOverloads constructor(
         images: List<String>,
         itemMarginHorizontal: Float = 0f,
         itemCircularRadius: Float = 0f,
-        onSnapPositionChangeListener: OnSnapPositionChangeListener,
+        onSnapPositionChangeListener: OnSnapPositionChangeListener?,
         onClickedListener:((String)-> Unit)? = null,
     ) {
         val snapHelper = PagerSnapHelper()
