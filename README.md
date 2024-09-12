@@ -38,7 +38,7 @@ To use the `ImageSliderView` in your project, add the JitPack repository to your
 Include the dependency in your module's `build.gradle` file. Replace `Tag` with the specific version or commit hash you want to use:
 
 ```groovy
-    implementation 'com.github.YourUsername:ImageSliderView:Tag'
+ implementation 'com.github.Pisey-Nguon:android-image-slider:Tag'
 ```
 
 ### 3. Sync Your Project
@@ -113,8 +113,8 @@ You can customize the horizontal margins and the corner radius of each item in t
 ```kotlin
 imageSliderView.setImages(
     images = images,
-    itemMarginHorizontal = 8f, // 8dp horizontal margin
-    itemCircularRadius = 16f, // 16dp corner radius
+    itemMarginHorizontal = 8f, // 8pixel horizontal margin
+    itemCircularRadius = 16f, // 16pixel corner radius
     onSnapPositionChangeListener = object : OnSnapPositionChangeListener {
         override fun onSnapPositionChange(position: Int) {
             // Handle position change
