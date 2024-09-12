@@ -38,7 +38,7 @@ To use the `ImageSliderView` in your project, add the JitPack repository to your
 Include the dependency in your module's `build.gradle` file. Replace `Tag` with the specific version or commit hash you want to use:
 
 ```groovy
-    implementation 'com.github.YourUsername:ImageSliderView:Tag'
+ implementation 'com.github.Pisey-Nguon:android-image-slider:Tag'
 ```
 
 ### 3. Sync Your Project
