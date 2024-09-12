@@ -53,10 +53,11 @@ class ImageSliderView @JvmOverloads constructor(
         images: List<String>,
         itemMarginHorizontal: Float = 0f,
         itemCircularRadius: Float = 0f,
-        onSnapPositionChangeListener: OnSnapPositionChangeListener
+        onSnapPositionChangeListener: OnSnapPositionChangeListener,
+        onClickedListener:((String)-> Unit)? = null,
     ) {
         val snapHelper = PagerSnapHelper()
-        val adapter = ImageSliderAdapter(images, itemMarginHorizontal, itemCircularRadius)
+        val adapter = ImageSliderAdapter(images, itemMarginHorizontal, itemCircularRadius,onClickedListener)
         val layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

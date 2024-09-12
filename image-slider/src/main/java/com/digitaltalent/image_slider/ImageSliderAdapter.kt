@@ -13,11 +13,12 @@ import com.bumptech.glide.Glide
 class ImageSliderAdapter(
     private val images: List<String>,
     private val itemMarginHorizontal: Float,
-    private val itemCircularRadius: Float
+    private val itemCircularRadius: Float,
+    private val onClickedListener: ((String) -> Unit)?,
 ) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun onBind(image: String, itemMarginHorizontal: Float, itemCircularRadius: Float) {
+        fun onBind(image: String, itemMarginHorizontal: Float, itemCircularRadius: Float,onClickedListener:((String)-> Unit)?) {
             val layoutCard = view.findViewById<CardView>(R.id.layoutCard)
             val imageView = view.findViewById<ImageView>(R.id.imageView)
             layoutCard.radius = itemCircularRadius
@@ -29,6 +30,7 @@ class ImageSliderAdapter(
             layoutCard.layoutParams = layoutParams
 
             Glide.with(view).load(image).into(imageView)
+            layoutCard.setOnClickListener { onClickedListener?.invoke(image) }
 
 
         }
@@ -47,7 +49,8 @@ class ImageSliderAdapter(
         holder.onBind(
             images[holder.adapterPosition % images.size],
             itemMarginHorizontal,
-            itemCircularRadius
+            itemCircularRadius,
+            onClickedListener
         )
     }
 
