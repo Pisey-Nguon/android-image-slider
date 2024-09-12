@@ -23,17 +23,22 @@ class MainActivity : AppCompatActivity() {
         }
         val pageIndicator = findViewById<PageIndicator>(R.id.pageIndicator)
         pageIndicator.length = 3
-        findViewById<ImageSliderView>(R.id.imageSlider).setImages(
+        val imageSlider = findViewById<ImageSliderView>(R.id.imageSlider)
+        val defaultSpacing = resources.getDimension(R.dimen.default_spacing)
+        imageSlider.setImages(
             listOf(
                 "https://picsum.photos/id/1/200/300",
-                "https://picsum.photos/id/2/200/300",
-                "https://picsum.photos/id/3/200/300"
-            ), onSnapPositionChangeListener = object :
+                "https://picsum.photos/id/12/200/300",
+                "https://picsum.photos/id/23/200/300"
+            ),
+            itemMarginHorizontal = defaultSpacing
+            , onSnapPositionChangeListener = object :
                 OnSnapPositionChangeListener {
                 override fun onSnapPositionChange(position: Int) {
                     pageIndicator.index = position
                 }
 
             })
+        imageSlider.setAutoScroll(3000)
     }
 }

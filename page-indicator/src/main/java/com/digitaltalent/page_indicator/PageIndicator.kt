@@ -1,11 +1,11 @@
 package com.digitaltalent.page_indicator
+
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
-
 
 class PageIndicator @JvmOverloads constructor(
     context: Context,
@@ -56,7 +56,7 @@ class PageIndicator @JvmOverloads constructor(
             }
 
             circleRadius = typedArray.getDimension(R.styleable.PageIndicator_circleRadius, 10f)
-            circleSpacing = typedArray.getDimension(R.styleable.PageIndicator_circleSpacing, 20f)
+            circleSpacing = typedArray.getDimension(R.styleable.PageIndicator_circleSpacing, 8f)
         } finally {
             typedArray.recycle()
         }
@@ -71,8 +71,11 @@ class PageIndicator @JvmOverloads constructor(
         super.onDraw(canvas)
         if (length <= 0) return
 
+        // Total width of all indicators and spacing
         val totalWidth = (circleRadius * 2 * length) + (circleSpacing * (length - 1))
-        val startX = (width - totalWidth) / 2f
+
+        // Calculate the start position to ensure centering
+        val startX = (width - totalWidth) / 2f + circleRadius // Add circleRadius to adjust for correct centering
         val centerY = height / 2f
 
         for (i in 0 until length) {
@@ -82,12 +85,15 @@ class PageIndicator @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Calculate the desired width based on the number of indicators, their size, and the spacing
         val desiredWidth = (circleRadius * 2 * length + circleSpacing * (length - 1)).toInt()
         val desiredHeight = (circleRadius * 2).toInt()
 
+        // Ensure the view's width matches the desired width, while respecting the parent's constraints
         val width = resolveSize(desiredWidth, widthMeasureSpec)
         val height = resolveSize(desiredHeight, heightMeasureSpec)
 
+        // Set the measured dimensions
         setMeasuredDimension(width, height)
     }
 }

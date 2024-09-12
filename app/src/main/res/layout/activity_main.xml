@@ -24,7 +24,8 @@
             app:circleColor="#777777"
             app:selectedCircleColor="#FFFFFF"
             app:circleRadius="8dp"
-            app:circleSpacing="16dp"
+            app:circleSpacing="10dp"
+
             />
     </FrameLayout>
 </RelativeLayout>
