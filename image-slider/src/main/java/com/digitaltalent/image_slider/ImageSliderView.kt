@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView.ScaleType
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -51,13 +52,14 @@ class ImageSliderView @JvmOverloads constructor(
 
     fun setImages(
         images: List<String>,
+        scaleType: ScaleType = ScaleType.CENTER,
         itemMarginHorizontal: Float = 0f,
         itemCircularRadius: Float = 0f,
         onSnapPositionChangeListener: OnSnapPositionChangeListener?,
         onClickedListener:((String)-> Unit)? = null,
     ) {
         val snapHelper = PagerSnapHelper()
-        val adapter = ImageSliderAdapter(images, itemMarginHorizontal, itemCircularRadius,onClickedListener)
+        val adapter = ImageSliderAdapter(images,scaleType, itemMarginHorizontal, itemCircularRadius,onClickedListener)
         val layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

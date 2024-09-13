@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ImageView.ScaleType
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +13,14 @@ import com.bumptech.glide.Glide
 
 class ImageSliderAdapter(
     private val images: List<String>,
+    private val scaleType: ScaleType,
     private val itemMarginHorizontal: Float,
     private val itemCircularRadius: Float,
     private val onClickedListener: ((String) -> Unit)?,
 ) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun onBind(image: String, itemMarginHorizontal: Float, itemCircularRadius: Float,onClickedListener:((String)-> Unit)?) {
+        fun onBind(image: String,scaleType: ScaleType, itemMarginHorizontal: Float, itemCircularRadius: Float,onClickedListener:((String)-> Unit)?) {
             val layoutCard = view.findViewById<CardView>(R.id.layoutCard)
             val imageView = view.findViewById<ImageView>(R.id.imageView)
             layoutCard.radius = itemCircularRadius
@@ -30,6 +32,7 @@ class ImageSliderAdapter(
             layoutCard.layoutParams = layoutParams
 
             Glide.with(view).load(image).into(imageView)
+            imageView.scaleType = scaleType
             layoutCard.setOnClickListener { onClickedListener?.invoke(image) }
 
 
@@ -48,6 +51,7 @@ class ImageSliderAdapter(
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.onBind(
             images[holder.adapterPosition % images.size],
+            scaleType,
             itemMarginHorizontal,
             itemCircularRadius,
             onClickedListener
