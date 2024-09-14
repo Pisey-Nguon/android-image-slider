@@ -78,22 +78,21 @@ Additionally, you can add a `PageIndicator` for visual feedback of the current p
 In your `Activity` or `Fragment`, configure the `ImageSliderView` as follows:
 
 ```kotlin
-val imageSliderView: ImageSliderView = findViewById(R.id.imageSlider)
-
+val imageSlider: ImageSliderView = findViewById(R.id.imageSlider)
+val pageIndicator: PageIndicatorView = findViewById(R.id.pageIndicator)
 val images = listOf(
     "image1_url",
     "image2_url",
     "image3_url"
 )
 
-imageSliderView.setImages(
-    images = images,
-    onSnapPositionChangeListener = object : OnSnapPositionChangeListener {
-        override fun onSnapPositionChange(position: Int) {
-            // Update your PageIndicator or perform any other action on position change
-        }
-    }
+imageSlider.setImages(
+    images = images
 )
+imageSlider.setOnSnapPositionChangeListener {
+    //You can update page indicator here
+    pageIndicator.index = it
+}
 ```
 
 ### 2. Enabling Auto Scroll
@@ -111,16 +110,8 @@ imageSliderView.setAutoScroll(3000L) // 3000 milliseconds = 3 seconds
 You can customize the horizontal margins and the corner radius of each item in the slider:
 
 ```kotlin
-imageSliderView.setImages(
-    images = images,
-    itemMarginHorizontal = 8f, // 8pixel horizontal margin
-    itemCircularRadius = 16f, // 16pixel corner radius
-    onSnapPositionChangeListener = object : OnSnapPositionChangeListener {
-        override fun onSnapPositionChange(position: Int) {
-            // Handle position change
-        }
-    }
-)
+    imageSlider.setItemCircularRadius(defaultRadius)
+    imageSlider.setItemMarginHorizontal(defaultSpacing)
 ```
 
 ### 2. Page Indicator Customization
