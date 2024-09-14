@@ -64,7 +64,7 @@ class ImageSliderView @JvmOverloads constructor(
         this.onSnapPositionChangeListener = onSnapPositionChangeListener
     }
 
-    fun setOnClickListener(onClickedListener: ((String) -> Unit)?) {
+    fun setOnItemClickListener(onClickedListener: ((String) -> Unit)?) {
         this.onClickedListener = onClickedListener
         refreshAdapter()
     }
