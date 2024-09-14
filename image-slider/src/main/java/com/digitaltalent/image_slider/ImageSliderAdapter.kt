@@ -1,5 +1,6 @@
 package com.digitaltalent.image_slider
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,15 @@ import com.bumptech.glide.Glide
 
 class ImageSliderAdapter(
     private val images: List<String>,
-    private val scaleType: ScaleType,
-    private val itemMarginHorizontal: Float,
-    private val itemCircularRadius: Float,
-    private val onClickedListener: ((String) -> Unit)?,
+    var scaleType: ScaleType,
+    var itemMarginHorizontal: Float,
+    var itemCircularRadius: Float,
+    var onClickedListener: ((String) -> Unit)?,
 ) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
+
+    fun getImageCount():Int{
+        return images.size
+    }
 
     inner class ImageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun onBind(image: String,scaleType: ScaleType, itemMarginHorizontal: Float, itemCircularRadius: Float,onClickedListener:((String)-> Unit)?) {
@@ -61,59 +66,5 @@ class ImageSliderAdapter(
 
 }
 
-interface OnSnapPositionChangeListener {
 
-    fun onSnapPositionChange(position: Int)
-}
-interface OnSnapStateChangedListener{
-    fun onSnapStateChange(newState:Int)
-}
-
-class SnapOnScrollListener(
-    private val snapHelper: SnapHelper,
-    private var behavior: Behavior = Behavior.NOTIFY_ON_SCROLL_STATE_IDLE,
-    private val count:Int,
-    var onSnapPositionChangeListener: OnSnapPositionChangeListener? = null,
-    var onScrollStateChangedListener: OnSnapStateChangedListener? = null,
-) : RecyclerView.OnScrollListener() {
-
-    enum class Behavior {
-        NOTIFY_ON_SCROLL,
-        NOTIFY_ON_SCROLL_STATE_IDLE
-    }
-
-    private var snapPosition = RecyclerView.NO_POSITION
-
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        if (behavior == Behavior.NOTIFY_ON_SCROLL) {
-            maybeNotifySnapPositionChange(recyclerView)
-        }
-    }
-
-    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        onScrollStateChangedListener?.onSnapStateChange(newState)
-        if (behavior == Behavior.NOTIFY_ON_SCROLL_STATE_IDLE
-            && newState == RecyclerView.SCROLL_STATE_IDLE
-        ) {
-            maybeNotifySnapPositionChange(recyclerView)
-        }
-    }
-
-    private fun maybeNotifySnapPositionChange(recyclerView: RecyclerView) {
-        val snapView = snapHelper.findSnapView(recyclerView.layoutManager)
-        val snapPosition = snapView?.let { recyclerView.layoutManager?.getPosition(it) } ?: return
-        val snapPositionChanged = this.snapPosition != snapPosition
-        if (snapPositionChanged) {
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-            // Calculate real position based on the visible item and dataset size
-            val adapterPosition = (firstVisibleItemPosition + (snapPosition - firstVisibleItemPosition)) % count
-            onSnapPositionChangeListener?.onSnapPositionChange(adapterPosition)
-            this.snapPosition = snapPosition
-        }
-    }
-
-
-}
 
