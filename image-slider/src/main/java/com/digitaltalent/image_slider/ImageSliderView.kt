@@ -58,6 +58,11 @@ class ImageSliderView @JvmOverloads constructor(
         this.onSnapPositionChangeListener = onSnapPositionChangeListener
     }
 
+    fun setScaleType(scaleType: ScaleType){
+        this.scaleType = scaleType
+        refreshAdapter()
+    }
+
     fun setOnItemClickListener(onClickedListener: ((String) -> Unit)?) {
         this.onClickedListener = onClickedListener
         refreshAdapter()

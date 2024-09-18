@@ -1,15 +1,12 @@
 package com.digitaltalent.image_slider
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 
 class ImageSliderAdapter(
@@ -31,12 +28,12 @@ class ImageSliderAdapter(
             layoutCard.radius = itemCircularRadius
             val layoutParams = ViewGroup.MarginLayoutParams(
                 ViewGroup.MarginLayoutParams.MATCH_PARENT,
-                ViewGroup.MarginLayoutParams.WRAP_CONTENT
+                ViewGroup.MarginLayoutParams.MATCH_PARENT
             )
             layoutParams.setMargins(itemMarginHorizontal.toInt(), 0, itemMarginHorizontal.toInt(), 0) // left, top, right, bottom
             layoutCard.layoutParams = layoutParams
-
-            Glide.with(view).load(image).into(imageView)
+            imageView.scaleType = scaleType
+            Glide.with(view.context).load(image).into(imageView)
             layoutCard.setOnClickListener { onClickedListener?.invoke(image) }
 
 

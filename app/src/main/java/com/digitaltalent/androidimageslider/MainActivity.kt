@@ -1,6 +1,7 @@
 package com.digitaltalent.androidimageslider
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,11 +28,12 @@ class MainActivity : AppCompatActivity() {
         val defaultRadius = resources.getDimension(R.dimen.default_radius)
         imageSlider.setImages(
             listOf(
-                "https://picsum.photos/id/1/200/300",
-                "https://picsum.photos/id/12/200/300",
-                "https://picsum.photos/id/23/200/300"
+                "https://jalat.obs.ap-southeast-3.myhuaweicloud.com/b3e81b9528fc46a69ed43b0a84870bb7.png",
+                "https://jalat.obs.ap-southeast-3.myhuaweicloud.com/b19cc94add08416b81cbb0d35f17e3fd.png",
             ),
         )
+
+        imageSlider.setScaleType(ImageView.ScaleType.FIT_XY)
         imageSlider.setItemCircularRadius(defaultRadius)
         imageSlider.setItemMarginHorizontal(defaultSpacing)
         imageSlider.setOnSnapPositionChangeListener {
