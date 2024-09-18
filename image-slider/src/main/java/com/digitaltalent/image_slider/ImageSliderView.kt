@@ -44,12 +44,6 @@ class ImageSliderView @JvmOverloads constructor(
         return view.findViewById(R.id.recyclerView)
     }
 
-    // Separated Setters
-    fun setScaleType(scaleType: ScaleType) {
-        this.scaleType = scaleType
-        refreshAdapter()
-    }
-
     fun setItemMarginHorizontal(itemMarginHorizontal: Float) {
         this.itemMarginHorizontal = itemMarginHorizontal
         refreshAdapter()

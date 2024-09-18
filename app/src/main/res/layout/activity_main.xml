@@ -14,7 +14,7 @@
         <com.digitaltalent.image_slider.ImageSliderView
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="300dp" />
 
         <com.digitaltalent.page_indicator.PageIndicator
             android:id="@+id/pageIndicator"

@@ -37,7 +37,6 @@ class ImageSliderAdapter(
             layoutCard.layoutParams = layoutParams
 
             Glide.with(view).load(image).into(imageView)
-            imageView.scaleType = scaleType
             layoutCard.setOnClickListener { onClickedListener?.invoke(image) }
 
 
